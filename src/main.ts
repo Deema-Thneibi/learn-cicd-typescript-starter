@@ -9,10 +9,6 @@ import { handlerNotesCreate, handlerNotesGet } from "./api/notes.js";
 import { handlerUsersCreate, handlerUsersGet } from "./api/users.js";
 
 // 🔴 هذا الجزء المطلوب (عشان يظهر error في lint)
-function unused() {
-  // this function does nothing
-  // and is called nowhere
-}
 
 const __dirname = path.resolve();
 
