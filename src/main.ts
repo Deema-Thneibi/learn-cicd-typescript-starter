@@ -8,6 +8,12 @@ import { handlerReadiness } from "./api/readiness.js";
 import { handlerNotesCreate, handlerNotesGet } from "./api/notes.js";
 import { handlerUsersCreate, handlerUsersGet } from "./api/users.js";
 
+// 🔴 هذا الجزء المطلوب (عشان يظهر error في lint)
+function unused() {
+  // this function does nothing
+  // and is called nowhere
+}
+
 const __dirname = path.resolve();
 
 if (!config.api.port) {
@@ -41,7 +47,6 @@ if (db) {
 }
 
 v1Router.get("/healthz", handlerReadiness);
-
 app.use("/v1", v1Router);
 
 app.listen(config.api.port, () => {
