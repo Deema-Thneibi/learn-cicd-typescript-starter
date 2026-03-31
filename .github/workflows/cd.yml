@@ -30,12 +30,12 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
         with:
           project_id: notely-personal
 
-      - name: Confirm gcloud project
-        run: gcloud config set project notely-personal
-
       - name: Build and push image
         run: gcloud builds submit --project=notely-personal --tag us-central1-docker.pkg.dev/notely-personal/notely-ar-repo/notely:latest .
+
+      - name: Deploy to Cloud Run
+        run: gcloud run deploy notely --image us-central1-docker.pkg.dev/notely-personal/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project notely-personal --max-instances=4
