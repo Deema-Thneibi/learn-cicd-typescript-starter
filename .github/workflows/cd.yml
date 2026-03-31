@@ -31,6 +31,11 @@ jobs:
 
       - name: Set up gcloud
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: notely-personal
+
+      - name: Confirm gcloud project
+        run: gcloud config set project notely-personal
 
       - name: Build and push image
-        run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-personal/notely-ar-repo/notely:latest .
+        run: gcloud builds submit --project=notely-personal --tag us-central1-docker.pkg.dev/notely-personal/notely-ar-repo/notely:latest .
